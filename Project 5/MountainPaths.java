@@ -106,8 +106,8 @@ public class MountainPaths
     int maxInt = Integer.MIN_VALUE;
     int r = grid.length;
     int c = grid[0].length;
-       for (int j = 1; j < 844; j++) {
-         for (int i = 1; i < 480; i++) {
+       for (int j = 1; j < c; j++) {
+         for (int i = 1; i < r; i++) {
            if (grid[i][j] > maxInt)
              maxInt = grid[i][j];
          }
@@ -126,16 +126,22 @@ public class MountainPaths
    * @param grid a 2D array of the data
    */
   public static void drawMap(Graphics g, int[][] grid){
-    int y = grid.length;
-    int x = grid[0].length;
-    int c = 0;
-    for (int j = 1; j < 844; j++) {
-      for (int i = 1; i < 480; i++) {
-         g.setColor(new Color(c, c, c));
-         g.fillRect(x, y, 1, 1);
+    int max = findMaxValue(grid);
+    int min = findMinValue(grid);
+    int d = 0;
+    for (int row = 0; row < grid.length; row++) {
+      for (int col = 0; col < grid[0].length; col++) {
+        
+        if (grid[row][col] == min) 
+          d = 0;
+        else 
+         d = (grid[row][col]) / 17;
+        
+         g.setColor(new Color(d, d, d));
+         g.fillRect(col, row, 1, 1);
       }
     }
-    System.out.println(c);
+
 
     
     
